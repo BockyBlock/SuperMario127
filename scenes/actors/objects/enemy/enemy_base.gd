@@ -37,6 +37,8 @@ onready var platform_detector: Area2D = $PlatformDetector
 onready var state_container: Node = $States 
 # self explanatory
 onready var sprite: AnimatedSprite = $AnimatedSprite
+# self explanatory
+onready var recolorable: AnimatedSprite = $AnimatedSprite/Recolorable
 # checks for nearby dialogue triggers when disabled
 onready var dialogue_detector: Area2D = $AnimatedSprite/DialogueDetector
 # emits when spawned

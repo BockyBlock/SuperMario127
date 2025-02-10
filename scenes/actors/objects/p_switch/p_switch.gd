@@ -53,10 +53,6 @@ func _physics_process(delta):
 						character.velocity.y = -325
 						if character.state != character.get_state_node("DiveState"):
 							character.set_state_by_name("BounceState", delta)
-			
-			if current_scene.switch_timer == 0 and boost_timer == 0:
-				pressed = false
-				anim_player.play("unpress")
 		else:
 			# Check the press hitbox
 			for hit_body in press_area.get_overlapping_bodies():
@@ -68,3 +64,13 @@ func _physics_process(delta):
 							was_ground_pound = false
 						character = hit_body
 						press(hit_body.global_position)
+				elif hit_body.name.begins_with("Dayzee") and !pressed:
+					current_scene.set_switch_timer(pressed_time)
+					press(hit_body.global_position)
+					boost_timer = 0
+					
+	
+			
+		if pressed and current_scene.switch_timer == 0 and boost_timer == 0:
+			pressed = false
+			anim_player.play("unpress")

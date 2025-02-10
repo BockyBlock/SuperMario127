@@ -2,6 +2,9 @@ extends GameObject
 
 onready var sprite_container = $KinematicBody2D/Sprites
 onready var sprite = $KinematicBody2D/Sprites/Sprite
+onready var recolorable = $KinematicBody2D/Sprites/Sprite/color_middle
+onready var recolorable_u = $KinematicBody2D/Sprites/Sprite/color_up
+onready var recolorable_d = $KinematicBody2D/Sprites/Sprite/color_down
 onready var fuse = $KinematicBody2D/Sprites/Fuse
 onready var fuse_sound = $KinematicBody2D/FuseSound
 onready var fuse_sound_2 = $KinematicBody2D/FuseSound2
@@ -20,7 +23,6 @@ onready var raycasts = [grounded_check]
 var dead = false
 var character
 var character_damage
-var wander: = true
 
 var gravity : float
 var gravity_scale : float
@@ -42,18 +44,36 @@ var hit = false
 var loaded = true
 var snap := Vector2(0, 12)
 
+export var wander := true
+export var color := Color(0.25, 0.25, 0.25)
+export var rainbow := false
+
 func _set_properties():
-	savable_properties = ["wander"]
-	editable_properties = ["wander"]
+	savable_properties = ["wander", "rainbow", "color"]
+	editable_properties = ["wander", "rainbow", "color"]
 	
 func _set_property_values():
-	set_property("wander", wander, false)
-
+	set_property("wander", wander, true)
+	set_property("rainbow", rainbow, true)
+	set_property("color", color, true)
+	
 func player_entered(body):
 	if enabled and body.name.begins_with("Character") and !dead and character == null:
 		character = body
 		explode_timer = 4
 		fuse_sound.play()
+	
+func player_exited(body):
+	if enabled and body.name.begins_with("Character") and !dead and character != null and rainbow:
+		character = null
+		explode_timer = 0
+		fuse_sound.stop()
+		fuse_sound_2.stop()
+		fuse.visible = false
+		sprite.modulate = Color(1,1,1)
+		sprite.speed_scale = 1
+		fuse.speed_scale = 1
+
 		
 func create_coin():
 	var object = LevelObject.new()
@@ -86,6 +106,7 @@ func _ready() -> void:
 	$VisibilityEnabler2D.connect("screen_entered", self, "on_show")
 	on_visibility_changed($VisibilityEnabler2D.is_on_screen())
 	player_detector.connect("body_entered", self, "player_entered")
+	player_detector.connect("body_exited", self, "player_exited")
 	player_detector.scale = Vector2(1, 1) / scale
 	Singleton.CurrentLevelData.enemies_instanced += 1
 	time_alive += float(Singleton.CurrentLevelData.enemies_instanced) / 2.0
@@ -97,15 +118,29 @@ func _ready() -> void:
 	
 	if !enabled:
 		kinematic_body.set_collision_mask_bit(3, false)
+		
+	var rounded_color = Color(stepify(color.r, 0.05), stepify(color.g, 0.05), stepify(color.b, 0.05))
+	if rounded_color == Color(0.25, 0.25, 0.25):
+		recolorable.visible = false
+		recolorable_u.visible = false
+		recolorable_d.visible = false
+	else:
+		recolorable.visible = true
+		recolorable_u.visible = true
+		recolorable_d.visible = true
 	
 func _process(_delta):
 	fuse.frame = sprite.frame
+	recolorable.self_modulate = color
+	if rainbow:
+		color.h = float(wrapi(OS.get_ticks_msec(), 0, 1000)) / 1000
+		# color.s = max(0.5, color.s)
 	if mode == 1:
 		# warning-ignore:integer_division
 		sprite.frame = wrapi(OS.get_ticks_msec() / 166, 0, 8)
 		
 func exploded(explosion_pos : Vector2):
-	if enabled:
+	if enabled and !rainbow:
 		hit = true
 		snap = Vector2(0, 0)
 		velocity.x = (kinematic_body.global_position - explosion_pos).normalized().x * 275
@@ -121,7 +156,8 @@ func steely_hit(hit_pos : Vector2):
 	velocity.y = -275
 	position.y -= 4
 	explode_timer = 4
-	character = 0
+	if !rainbow:
+		character = 0
 	
 func shell_hit(shell_pos : Vector2):
 	hit = true
@@ -131,7 +167,8 @@ func shell_hit(shell_pos : Vector2):
 	velocity.x = (kinematic_body.global_position - shell_pos).normalized().x * 275
 	velocity.y = -275
 	position.y -= 4
-	character = 0 # hacker chungus
+	if !rainbow:
+		character = 0 # hacker chungus
 
 func _physics_process(delta):
 	if mode == 1 or !enabled:
@@ -241,16 +278,27 @@ func _physics_process(delta):
 					fuse_sound_2.stop()
 					explosion_sound.play()
 					particles.emitting = true
-					sprite.visible = false
-					fuse.visible = false
-					dead = true
 					damage_timer = 0.35
-					delete_timer = 3.0
-					create_coin()
+					fuse.visible = false
+					if !rainbow:
+						dead = true
+						sprite.visible = false
+						delete_timer = 3.0
+						create_coin()
+					else:
+						sprite_container.rotation_degrees = 0
+						# explode_timer = 0
+						# character = null
+						hit = false
+						sprite.modulate = Color(1,1,1)
+						# fuse_sound.play()
+						# fuse_sound_2.play()
+						
 			if !dead and !hit:
-				facing_direction = 1 if (character.global_position.x > kinematic_body.global_position.x) else -1
-				velocity.x = lerp(velocity.x, facing_direction * run_speed, fps_util.PHYSICS_DELTA * accel)
-				fuse.visible = true
-				sprite.animation = "walking"
-				sprite.speed_scale = lerp(sprite.speed_scale, run_speed / passive_speed, fps_util.PHYSICS_DELTA * accel)
-				fuse.speed_scale = lerp(fuse.speed_scale, run_speed / passive_speed, fps_util.PHYSICS_DELTA * accel)
+				if character != null:
+					facing_direction = 1 if (character.global_position.x > kinematic_body.global_position.x) else -1
+					velocity.x = lerp(velocity.x, facing_direction * run_speed, fps_util.PHYSICS_DELTA * accel)
+					fuse.visible = true
+					sprite.animation = "walking"
+					sprite.speed_scale = lerp(sprite.speed_scale, run_speed / passive_speed, fps_util.PHYSICS_DELTA * accel)
+					fuse.speed_scale = lerp(fuse.speed_scale, run_speed / passive_speed, fps_util.PHYSICS_DELTA * accel)

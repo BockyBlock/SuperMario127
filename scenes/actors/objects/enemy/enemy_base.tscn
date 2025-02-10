@@ -124,6 +124,8 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite/DialogueDetector"]
 shape = SubResource( 15 )
 
+[node name="Recolorable" type="AnimatedSprite" parent="AnimatedSprite"]
+
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
 position = Vector2( 0, -32 )
 rect = Rect2( -64, -64, 128, 128 )

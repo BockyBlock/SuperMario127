@@ -31,3 +31,4 @@ func kill(body):
 func _ready():
 	var _connect = area.connect("body_entered", self, "kill")
 	var _connect2 = delete_timer.connect("timeout", self, "queue_free")
+	$AnimatedSprite.animation = String(palette)

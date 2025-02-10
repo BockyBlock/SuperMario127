@@ -1,0 +1,53 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float lines_distance = 1.0;
+uniform float scan_size = 2.0;
+uniform float scanline_alpha = 1;
+uniform float lines_velocity = 2.0;
+
+uniform float center_radius: hint_range(0.0, 1.0) = 0.5;
+const float pi = 3.14159265359;
+uniform vec2 center = vec2(0, 0);
+
+uniform float size = 32;
+
+void get_color_scanline(vec2 uv,inout vec4 c,float time,float angle){
+	float line_row = floor((angle * size/scan_size) + mod(time*lines_velocity, lines_distance));
+	float n = 1.0 - ceil((mod(line_row,lines_distance)/lines_distance));
+	c = c - n*c*(1.0 - scanline_alpha);
+	c.a = c.a*0.5;
+}
+
+void fragment()
+{
+	vec2 xy = UV * 2.0;
+	xy.x -= 1.0;
+	xy.y -= 1.0;
+	
+	float angle = atan(xy.y, xy.x);
+	if (angle < 0.0) {
+		angle += 2.0 * pi;
+	}
+	
+	vec4 d = texture(SCREEN_TEXTURE, SCREEN_UV);
+	
+	vec4 c = texture(TEXTURE, UV);
+	d.a = c.a * 0.25;
+	
+	get_color_scanline(xy,c,TIME,angle);
+	COLOR = c + d;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/lines_distance = 2.0
+shader_param/scan_size = 4.0
+shader_param/scanline_alpha = 0.5
+shader_param/lines_velocity = 2.0
+shader_param/center_radius = 0.5
+shader_param/center = Vector2( 0, 0 )
+shader_param/size = 32.0

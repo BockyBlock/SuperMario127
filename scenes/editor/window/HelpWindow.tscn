@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://assets/fonts/delfino.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/styles/ButtonStyleNormal.tres" type="StyleBox" id=5]
 [ext_resource path="res://scenes/editor/window/HelpPage.gd" type="Script" id=6]
 [ext_resource path="res://scenes/actors/objects/sign/sign.png" type="Texture" id=7]
+[ext_resource path="res://scenes/actors/objects/collision_block/cap_block.png" type="Texture" id=8]
 [ext_resource path="res://scenes/actors/objects/toad/icon.png" type="Texture" id=9]
 [ext_resource path="res://scenes/actors/objects/princess_peach/icon.png" type="Texture" id=10]
 [ext_resource path="res://scenes/actors/objects/yoshi/icon.png" type="Texture" id=11]
@@ -18,29 +19,38 @@
 [ext_resource path="res://scenes/actors/objects/dialogue_trigger/sign.png" type="Texture" id=17]
 [ext_resource path="res://scenes/shared/ui/selector.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/editor/assets/window_close.png" type="Texture" id=19]
+[ext_resource path="res://scenes/actors/objects/collision_block/cap_block_overlay.png" type="Texture" id=20]
 [ext_resource path="res://scenes/oldmenu/127Button.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/actors/objects/sparkle_emitter/preview_images/2.png" type="Texture" id=22]
+[ext_resource path="res://scenes/actors/objects/dayzee/dayzee.png" type="Texture" id=25]
+[ext_resource path="res://scenes/actors/objects/sandtide/tilemap.png" type="Texture" id=26]
+[ext_resource path="res://scenes/actors/objects/collision_block/block_material_static.tres" type="Material" id=27]
+[ext_resource path="res://scenes/actors/objects/dayzee/icon.png" type="Texture" id=28]
+[ext_resource path="res://scenes/actors/objects/roomtext/icon.png" type="Texture" id=32]
+[ext_resource path="res://scenes/actors/objects/rail_block/rail_block.png" type="Texture" id=34]
+[ext_resource path="res://scenes/actors/objects/dayzee/dayzee_color.png" type="Texture" id=35]
 
 [sub_resource type="DynamicFont" id=1]
 size = 56
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=18]
+[sub_resource type="StyleBoxFlat" id=22]
 bg_color = Color( 0.615686, 0.615686, 0.615686, 1 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=23]
 bg_color = Color( 0.905882, 0.905882, 0.905882, 1 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.439216, 0.439216, 0.439216, 1 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=25]
 content_margin_top = 12.0
 bg_color = Color( 0.254902, 0.254902, 0.254902, 1 )
 corner_radius_top_left = 8
@@ -48,11 +58,11 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=26]
 content_margin_left = 12.0
 bg_color = Color( 0.266667, 0.266667, 0.266667, 1 )
 
-[sub_resource type="StyleBoxFlat" id=22]
+[sub_resource type="StyleBoxFlat" id=27]
 content_margin_left = 16.0
 content_margin_right = 16.0
 content_margin_top = 8.0
@@ -64,19 +74,19 @@ corner_radius_top_right = 32
 corner_radius_bottom_right = 32
 corner_radius_bottom_left = 32
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.615686, 0.615686, 0.615686, 1 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=29]
 bg_color = Color( 0.905882, 0.905882, 0.905882, 1 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=30]
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=31]
 content_margin_left = 12.0
 bg_color = Color( 0.254902, 0.254902, 0.254902, 1 )
 corner_radius_top_left = 8
@@ -207,11 +217,11 @@ HScrollBar/icons/decrement = null
 HScrollBar/icons/decrement_highlight = null
 HScrollBar/icons/increment = null
 HScrollBar/icons/increment_highlight = null
-HScrollBar/styles/grabber = SubResource( 18 )
-HScrollBar/styles/grabber_highlight = SubResource( 3 )
-HScrollBar/styles/grabber_pressed = SubResource( 4 )
-HScrollBar/styles/scroll = SubResource( 5 )
-HScrollBar/styles/scroll_focus = SubResource( 6 )
+HScrollBar/styles/grabber = SubResource( 22 )
+HScrollBar/styles/grabber_highlight = SubResource( 23 )
+HScrollBar/styles/grabber_pressed = SubResource( 24 )
+HScrollBar/styles/scroll = SubResource( 25 )
+HScrollBar/styles/scroll_focus = SubResource( 26 )
 HSeparator/constants/separation = 4
 HSeparator/styles/separator = null
 HSlider/icons/grabber = null
@@ -340,7 +350,7 @@ RichTextLabel/fonts/mono_font = null
 RichTextLabel/fonts/normal_font = null
 RichTextLabel/styles/focus = null
 RichTextLabel/styles/normal = null
-ScrollContainer/styles/bg = SubResource( 22 )
+ScrollContainer/styles/bg = SubResource( 27 )
 SpinBox/icons/updown = null
 TabContainer/colors/font_color_bg = Color( 0, 0, 0, 1 )
 TabContainer/colors/font_color_disabled = Color( 0, 0, 0, 1 )
@@ -477,11 +487,11 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = SubResource( 7 )
-VScrollBar/styles/grabber_highlight = SubResource( 8 )
-VScrollBar/styles/grabber_pressed = SubResource( 9 )
-VScrollBar/styles/scroll = SubResource( 10 )
-VScrollBar/styles/scroll_focus = SubResource( 6 )
+VScrollBar/styles/grabber = SubResource( 28 )
+VScrollBar/styles/grabber_highlight = SubResource( 29 )
+VScrollBar/styles/grabber_pressed = SubResource( 30 )
+VScrollBar/styles/scroll = SubResource( 31 )
+VScrollBar/styles/scroll_focus = SubResource( 26 )
 VSeparator/constants/separation = 4
 VSeparator/styles/separator = null
 VSlider/icons/grabber = null
@@ -517,6 +527,11 @@ colors = PoolColorArray( 0, 0, 0, 0, 0.121569, 0.180392, 0.517647, 1 )
 [sub_resource type="GradientTexture" id=15]
 gradient = SubResource( 14 )
 width = 193
+
+[sub_resource type="DynamicFont" id=32]
+size = 32
+use_filter = true
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=20]
 size = 24
@@ -689,7 +704,6 @@ scroll_active = false
 script = ExtResource( 12 )
 
 [node name="Autotiling" type="ScrollContainer" parent="Pages"]
-visible = false
 margin_left = 448.5
 margin_top = 450.802
 margin_right = 1426.5
@@ -705,8 +719,8 @@ page_name = "Autotiling"
 [node name="RichTextLabel" type="RichTextLabel" parent="Pages/Autotiling"]
 margin_left = 16.0
 margin_top = 8.0
-margin_right = 962.0
-margin_bottom = 2783.0
+margin_right = 950.0
+margin_bottom = 2820.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_colors/default_color = Color( 1, 1, 1, 1 )
@@ -885,15 +899,14 @@ margin_right = 1426.0
 margin_bottom = 806.0
 theme = SubResource( 11 )
 scroll_horizontal_enabled = false
-scroll_vertical = 2047
 script = ExtResource( 3 )
 page_name = "Dialogue & NPCs"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Pages/Dialogue"]
 margin_left = 16.0
-margin_top = -2039.0
+margin_top = 8.0
 margin_right = 950.0
-margin_bottom = 440.0
+margin_bottom = 2487.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_colors/default_color = Color( 1, 1, 1, 1 )
@@ -1000,7 +1013,6 @@ scroll_active = false
 script = ExtResource( 12 )
 
 [node name="Images" type="Node2D" parent="Pages/Dialogue"]
-position = Vector2( 0, -2047 )
 
 [node name="Sign" type="Sprite" parent="Pages/Dialogue/Images"]
 position = Vector2( 764, 168 )
@@ -1040,6 +1052,270 @@ texture = ExtResource( 17 )
 position = Vector2( 794.5, 2204.5 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 7 )
+
+[node name="Mod" type="ScrollContainer" parent="Pages"]
+margin_left = 448.0
+margin_top = 450.0
+margin_right = 1426.0
+margin_bottom = 806.0
+theme = SubResource( 11 )
+scroll_horizontal_enabled = false
+script = ExtResource( 3 )
+page_name = "Modded"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Pages/Mod"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 950.0
+margin_bottom = 1895.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 32 )
+bbcode_enabled = true
+bbcode_text = "[center][color=yellow]- If You Don't Like It Why Don't You Make Your Own Mod? -[/color][/center]
+[center][color=yellow](Why Don't You Make 127 for short)[/color][/center]
+
+WDYM 127 was originally created to assist
+me in contributing for Super Mario 127.
+However, it bloomed out of control.
+
+This mod adds several new course parts, which can be found in the editor at the black \"WDYM 127\" category. It also adds some palettes, and changes the UI a little bit, just for fun.
+
+[center][color=yellow]--Dayzee--[/color][/center]
+Dayzees are docile plant-people. They
+were programmed with the new enemy 
+spawner system, allowing them to emote
+and respawn. Their petals can be 
+recolored, and even made rainbow.
+If a Dayzee is rainbow, it will be able to
+trigger Crystal Taps and P-Switches.
+
+[center][color=yellow]--Neon signs--[/color][/center]
+Neon signs allow you to place text in your level.
+The text has no background, and appears no
+matter what, making it a good decoration.
+
+[center][color=yellow]--Sand Rock--[/color][/center]
+These objects share most of the properties
+of lava, with the exception that they are 
+completely solid. Internally, sand rocks 
+are treated as a liquid, allowing them to
+stretch and shift.
+
+[center][color=yellow]--Hologram Block--[/color][/center]
+Hologram blocks are recolorable objects.
+The ones with rhombuses on them only
+collide with Mario and Luigi. The hollow
+ones only collide with enemies, NPCs, etc.
+
+[center][color=yellow]--Sparkle Emitter--[/color][/center]
+Sparkle Emitters emit sparkles, as expected.
+They have a lot of settings. They might be
+self-explanatory, but I'll explain them
+anyway, just to be safe.
+[indent]
+[color=#54f954]Color[/color] - multiplicative color
+[color=#54f954]Rainbow[/color] - doesn't work on grayscale colors
+[color=#54f954]Rate[/color] - how many particles should be visible at a time
+[color=#54f954]Radius[/color] - the size of the particle emitter
+[color=#54f954]Lifetime[/color] - the higher the number, the slower the particles
+[/indent]"
+text = "- If You Don't Like It Why Don't You Make Your Own Mod? -
+(Why Don't You Make 127 for short)
+
+WDYM 127 was originally created to assist
+me in contributing for Super Mario 127.
+However, it bloomed out of control.
+
+This mod adds several new course parts, which can be found in the editor at the black \"WDYM 127\" category. It also adds some palettes, and changes the UI a little bit, just for fun.
+
+--Dayzee--
+Dayzees are docile plant-people. They
+were programmed with the new enemy 
+spawner system, allowing them to emote
+and respawn. Their petals can be 
+recolored, and even made rainbow.
+If a Dayzee is rainbow, it will be able to
+trigger Crystal Taps and P-Switches.
+
+--Neon signs--
+Neon signs allow you to place text in your level.
+The text has no background, and appears no
+matter what, making it a good decoration.
+
+--Sand Rock--
+These objects share most of the properties
+of lava, with the exception that they are 
+completely solid. Internally, sand rocks 
+are treated as a liquid, allowing them to
+stretch and shift.
+
+--Hologram Block--
+Hologram blocks are recolorable objects.
+The ones with rhombuses on them only
+collide with Mario and Luigi. The hollow
+ones only collide with enemies, NPCs, etc.
+
+--Sparkle Emitter--
+Sparkle Emitters emit sparkles, as expected.
+They have a lot of settings. They might be
+self-explanatory, but I'll explain them
+anyway, just to be safe.
+	
+Color - multiplicative color
+Rainbow - doesn't work on grayscale colors
+Rate - how many particles should be visible at a time
+Radius - the size of the particle emitter
+Lifetime - the higher the number, the slower the particles
+"
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 12 )
+
+[node name="Images" type="Sprite" parent="Pages/Mod"]
+position = Vector2( 15, 7.99997 )
+scale = Vector2( 1, 1 )
+
+[node name="Neon" type="Sprite" parent="Pages/Mod/Images"]
+position = Vector2( 854.5, 819.5 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 32 )
+
+[node name="Dayzee" type="Sprite" parent="Pages/Mod/Images"]
+position = Vector2( 690, 646 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 28 )
+
+[node name="Dayzee2" type="Sprite" parent="Pages/Mod/Images/Dayzee"]
+position = Vector2( 20.75, -15.5 )
+texture = ExtResource( 25 )
+region_enabled = true
+region_rect = Rect2( 24, 0, 24, 32 )
+
+[node name="DayzeeColor" type="Sprite" parent="Pages/Mod/Images/Dayzee/Dayzee2"]
+modulate = Color( 0.737255, 1, 0.537255, 1 )
+texture = ExtResource( 35 )
+region_enabled = true
+region_rect = Rect2( 24, 0, 24, 32 )
+
+[node name="Dayzee" type="Sprite" parent="Pages/Mod/Images/Dayzee"]
+position = Vector2( 39.25, 6.75 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 25 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 24, 32 )
+
+[node name="DayzeeColor" type="Sprite" parent="Pages/Mod/Images/Dayzee/Dayzee"]
+modulate = Color( 1, 0.537255, 0.537255, 1 )
+texture = ExtResource( 35 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 24, 32 )
+
+[node name="Stone" type="NinePatchRect" parent="Pages/Mod/Images"]
+margin_left = 712.0
+margin_top = 972.0
+margin_right = 779.0
+margin_bottom = 1036.0
+rect_scale = Vector2( 2.92, 2.92 )
+size_flags_horizontal = 5
+size_flags_vertical = 5
+texture = ExtResource( 26 )
+region_rect = Rect2( 0, 0, 48, 48 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="EnemyCollBlock" type="Sprite" parent="Pages/Mod/Images"]
+material = ExtResource( 27 )
+position = Vector2( 860, 1322 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 34 )
+
+[node name="CapBlock" type="Sprite" parent="Pages/Mod/Images"]
+material = ExtResource( 27 )
+position = Vector2( 732, 1304.5 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+
+[node name="CapBlockOverlay" type="Sprite" parent="Pages/Mod/Images/CapBlock"]
+texture = ExtResource( 20 )
+
+[node name="Sparkly" type="Sprite" parent="Pages/Mod/Images"]
+position = Vector2( 821, 1561 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 22 )
+
+[node name="Changelist" type="ScrollContainer" parent="Pages"]
+margin_left = 448.0
+margin_top = 450.0
+margin_right = 1426.0
+margin_bottom = 806.0
+theme = SubResource( 11 )
+scroll_horizontal_enabled = false
+script = ExtResource( 3 )
+page_name = "Changes"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Pages/Changelist"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 950.0
+margin_bottom = 1525.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 32 )
+bbcode_enabled = true
+bbcode_text = "[center][color=yellow]--Changelog of WDYM 127--[/color][/center]
+
+VERSION 1.0:
+- Change the title screen slightly. The background is now pink, and the scrolling striped patterns are now purple. Also, the \"rename folder\" screen is different.
+- Add a new enemy, the Crayzee Dayzee. It uses the new enemy-spawner system, but is extremely weak and docile. It can be recolored. If it is set to be rainbow, it will be able to hit P Switches, On-off floor switches, and Crystal Taps.
+- Split the Enemies category into two distinct categories. The first is for monsters like Goombas, Jelectros, and Goonies. The second is for non-sentient hazards like Spike-traps and Green Demons.
+- Add Mario-solid Hologram Blocks, which only collide with the player character and nothing else. They are recolorable, and use a shader.
+- Add Sprite-solid Hologram Blocks, which collide with everything EXCEPT the player character. They are recolorable, and use a shader.
+- Add Neon Signs, which work like regular signs, but are always active.
+- Add a new palette to Grass, Tall Bush, Big Tall Bush, and Flower Bush.
+- Change Sand Rocks so that they now use 9-slices.
+- Make hostile Bob-ombs colorable and rainbowable. Rainbow ones will come back to life after exploding, and will get distracted if Mario's too far away.
+- Add Sparkle Emitters.
+- Add two new help menu pages.
+- Change the icon for Bullet Bill Blaster.
+
+VERSION 0.0:
+- Implement Sand Rocks with a placeholder graphic. They share all of the properties of lava, but they are completely solid.
+- Add an option to Bob-ombs that allows them to stand still until they see Mario. Once they do, they will function as normal.
+- Allow Koopas to be Shelled and Rainbow at the same time.
+- Add new palettes for Jelectro."
+text = "--Changelog of WDYM 127--
+
+VERSION 1.0:
+- Change the title screen slightly. The background is now pink, and the scrolling striped patterns are now purple. Also, the \"rename folder\" screen is different.
+- Add a new enemy, the Crayzee Dayzee. It uses the new enemy-spawner system, but is extremely weak and docile. It can be recolored. If it is set to be rainbow, it will be able to hit P Switches, On-off floor switches, and Crystal Taps.
+- Split the Enemies category into two distinct categories. The first is for monsters like Goombas, Jelectros, and Goonies. The second is for non-sentient hazards like Spike-traps and Green Demons.
+- Add Mario-solid Hologram Blocks, which only collide with the player character and nothing else. They are recolorable, and use a shader.
+- Add Sprite-solid Hologram Blocks, which collide with everything EXCEPT the player character. They are recolorable, and use a shader.
+- Add Neon Signs, which work like regular signs, but are always active.
+- Add a new palette to Grass, Tall Bush, Big Tall Bush, and Flower Bush.
+- Change Sand Rocks so that they now use 9-slices.
+- Make hostile Bob-ombs colorable and rainbowable. Rainbow ones will come back to life after exploding, and will get distracted if Mario's too far away.
+- Add Sparkle Emitters.
+- Add two new help menu pages.
+- Change the icon for Bullet Bill Blaster.
+
+VERSION 0.0:
+- Implement Sand Rocks with a placeholder graphic. They share all of the properties of lava, but they are completely solid.
+- Add an option to Bob-ombs that allows them to stand still until they see Mario. Once they do, they will function as normal.
+- Allow Koopas to be Shelled and Rainbow at the same time.
+- Add new palettes for Jelectro."
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 12 )
+
+[node name="Images" type="Node2D" parent="Pages/Changelist"]
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -1107,7 +1383,7 @@ anchor_bottom = 1.0
 margin_top = 1.25
 margin_bottom = 1.25
 custom_fonts/font = SubResource( 16 )
-text = "1/3"
+text = "1/4"
 align = 1
 valign = 1
 

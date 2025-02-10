@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/actors/objects/bob_omb/regular_frames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/actors/objects/bob_omb/bob_omb.gd" type="Script" id=2]
@@ -8,6 +8,16 @@
 [ext_resource path="res://scenes/actors/objects/bob_omb/explosion.png" type="Texture" id=6]
 [ext_resource path="res://scenes/actors/objects/bob_omb/explosion_sound.wav" type="AudioStream" id=7]
 [ext_resource path="res://scenes/actors/objects/goomba/body.gd" type="Script" id=8]
+[ext_resource path="res://scenes/actors/mario/FluddAnimSync.gd" type="Script" id=9]
+[ext_resource path="res://scenes/actors/objects/bob_omb/color_stuff/fc_main.tres" type="SpriteFrames" id=10]
+[ext_resource path="res://scenes/actors/objects/bob_omb/color_stuff/fc_down.tres" type="SpriteFrames" id=11]
+[ext_resource path="res://scenes/actors/objects/bob_omb/color_stuff/fc_up.tres" type="SpriteFrames" id=12]
+
+[sub_resource type="CanvasItemMaterial" id=9]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 2
 
 [sub_resource type="RayShape2D" id=1]
 length = 9.0
@@ -53,6 +63,26 @@ script = ExtResource( 8 )
 [node name="Sprite" type="AnimatedSprite" parent="KinematicBody2D/Sprites"]
 frames = ExtResource( 1 )
 playing = true
+
+[node name="color_middle" type="AnimatedSprite" parent="KinematicBody2D/Sprites/Sprite"]
+visible = false
+frames = ExtResource( 10 )
+playing = true
+script = ExtResource( 9 )
+
+[node name="color_up" type="AnimatedSprite" parent="KinematicBody2D/Sprites/Sprite"]
+visible = false
+material = SubResource( 9 )
+frames = ExtResource( 12 )
+playing = true
+script = ExtResource( 9 )
+
+[node name="color_down" type="AnimatedSprite" parent="KinematicBody2D/Sprites/Sprite"]
+visible = false
+material = SubResource( 8 )
+frames = ExtResource( 11 )
+playing = true
+script = ExtResource( 9 )
 
 [node name="Fuse" type="AnimatedSprite" parent="KinematicBody2D/Sprites"]
 visible = false

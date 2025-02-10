@@ -88,6 +88,8 @@ func _physics_process(delta):
 							was_ground_pound = false
 						character = hit_body
 						press(hit_body.global_position)
+				elif hit_body.name.begins_with("Dayzee") and hit_body.rainbow:
+					press(hit_body.global_position)
 
 func update_switch_state():
 	if !self_activated:

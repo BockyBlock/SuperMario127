@@ -24,8 +24,8 @@ var save_pos : Vector2
 onready var area_collision = $Area2D/CollisionShape2D
 onready var body_collision = $KinematicBody2D/CollisionShape2D
 onready var sprite = $ColorRect
-onready var waves = $TextureRect
-onready var color_sprite = $TextureRect/Recolorable
+onready var waves = $Stone
+onready var color_sprite = $Stone/Stone_colorable
 
 func _set_properties():
 	savable_properties = ["width", "height", "color", "render_in_front", "tag", "tap_mode", "textured"]
@@ -62,8 +62,8 @@ func _ready():
 func change_size():
 	preview_position = Vector2(-width / 2, height / 2)
 	sprite.rect_size = Vector2(width, height)
-	waves.rect_size.x = sprite.rect_size.x
-	color_sprite.rect_size.x = sprite.rect_size.x
+	waves.rect_size = sprite.rect_size
+	color_sprite.rect_size = sprite.rect_size
 	area_collision.position = Vector2(width / 2, height / 2)
 	area_collision.reset_physics_interpolation()
 	area_collision.shape.extents = area_collision.position
@@ -72,6 +72,7 @@ func change_size():
 	body_collision.shape = area_collision.shape
 	
 	waves.visible = textured
+	sprite.visible = !textured
 	
 	var rounded_color = Color(stepify(color.r, 0.05), stepify(color.g, 0.05), stepify(color.b, 0.05))
 	if (rounded_color == Color(0.5, 0, 0) or rounded_color == Color(1, 1, 0)) and textured:
@@ -82,10 +83,7 @@ func change_size():
 	else:
 		color_sprite.visible = true
 		color_sprite.modulate = color
-		if textured:
-			sprite.color = Color(0.75, 0.75, 0.75)
-		else:
-			sprite.color = Color(1,1,1)
+		sprite.color = Color(1,1,1)
 		sprite.modulate = color
 		var desat_color = color
 		desat_color.s /= 2

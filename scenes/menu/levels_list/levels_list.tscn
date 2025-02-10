@@ -1,7 +1,7 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://scenes/menu/theme.tres" type="Theme" id=1]
-[ext_resource path="res://scenes/actors/objects/cloud_platform/texture.png" type="Texture" id=2]
+[ext_resource path="res://scenes/actors/objects/rail_block/rail_block.png" type="Texture" id=2]
 [ext_resource path="res://scenes/menu/button_scripts/button_hover-vertical.gd" type="Script" id=3]
 [ext_resource path="res://assets/sounds/hover.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/click2.wav" type="AudioStream" id=5]
@@ -42,9 +42,9 @@
 [ext_resource path="res://scenes/menu/levels_list/icons/view_info.png" type="Texture" id=40]
 [ext_resource path="res://scenes/menu/levels_list/icons/new_folder.png" type="Texture" id=41]
 [ext_resource path="res://scenes/menu/background_scroll/background.tscn" type="PackedScene" id=42]
-[ext_resource path="res://scenes/actors/mario/luigi.png" type="Texture" id=43]
-[ext_resource path="res://scenes/actors/objects/green_demon/green_demon.png" type="Texture" id=44]
-[ext_resource path="res://scenes/actors/mario/mario.png" type="Texture" id=45]
+[ext_resource path="res://scenes/actors/mario/mario_alt.png" type="Texture" id=43]
+[ext_resource path="res://scenes/actors/objects/collision_block/cap_block_overlay.png" type="Texture" id=44]
+[ext_resource path="res://scenes/actors/objects/sandtide/tilemap.png" type="Texture" id=45]
 [ext_resource path="res://scenes/actors/mario/nozzles/hover_mario.png" type="Texture" id=46]
 [ext_resource path="res://scenes/menu/levels_list/misc/folder_setting_buttons.gd" type="Script" id=47]
 [ext_resource path="res://assets/fonts/delfino_medium.tres" type="DynamicFont" id=48]
@@ -55,6 +55,13 @@
 [ext_resource path="res://scenes/menu/levels_list/misc/http_thumbnails.gd" type="Script" id=53]
 [ext_resource path="res://scenes/menu/line_edit_unfocus.gd" type="Script" id=54]
 [ext_resource path="res://scenes/menu/text_edit_unfocus.gd" type="Script" id=55]
+[ext_resource path="res://scenes/actors/objects/collision_block/cap_block.png" type="Texture" id=56]
+[ext_resource path="res://scenes/actors/objects/bullet_bill/texture.png" type="Texture" id=57]
+[ext_resource path="res://scenes/actors/objects/dayzee/dayzee_color.png" type="Texture" id=58]
+[ext_resource path="res://scenes/actors/objects/collision_block/block_material_static.tres" type="Material" id=59]
+[ext_resource path="res://scenes/actors/objects/bullet_bill/colored.png" type="Texture" id=60]
+[ext_resource path="res://scenes/actors/objects/dayzee/dayzee.png" type="Texture" id=61]
+[ext_resource path="res://scenes/actors/mario/animations/talking/luigi_alt/shocked.png" type="Texture" id=62]
 
 [sub_resource type="CanvasItemMaterial" id=22]
 blend_mode = 1
@@ -361,7 +368,7 @@ font_data = ExtResource( 6 )
 offsets = PoolRealArray( 0, 0.417085 )
 colors = PoolColorArray( 1, 0.968627, 0.968627, 0.0627451, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture2D" id=26]
+[sub_resource type="GradientTexture2D" id=29]
 gradient = SubResource( 25 )
 fill_from = Vector2( 0, 1 )
 fill_to = Vector2( 0, 0 )
@@ -1596,9 +1603,9 @@ folder_name_edit_path = NodePath("HBoxContainer/FolderName")
 folder_name_label_path = NodePath("../Panel/MarginContainer/VBoxContainer/FolderName")
 
 [node name="Return" type="Button" parent="Panel/Subscreens/FolderSettings/Control/FolderSettingButtons"]
-margin_top = 59.0
+margin_top = 74.0
 margin_right = 163.0
-margin_bottom = 79.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 0, 20 )
 focus_neighbour_top = NodePath("../DeleteFolder")
 theme_type_variation = "AlternateButton"
@@ -1623,15 +1630,15 @@ script = ExtResource( 29 )
 offset = Vector2( -49, 0 )
 
 [node name="Padding" type="Control" parent="Panel/Subscreens/FolderSettings/Control/FolderSettingButtons"]
-margin_top = 89.0
+margin_top = 104.0
 margin_right = 163.0
-margin_bottom = 99.0
+margin_bottom = 114.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/Subscreens/FolderSettings/Control/FolderSettingButtons"]
-margin_top = 109.0
+margin_top = 124.0
 margin_right = 163.0
-margin_bottom = 129.0
+margin_bottom = 144.0
 size_flags_horizontal = 3
 custom_constants/separation = 0
 
@@ -1652,9 +1659,9 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 24, 0 )
 
 [node name="RenameFolder" type="Button" parent="Panel/Subscreens/FolderSettings/Control/FolderSettingButtons"]
-margin_top = 139.0
+margin_top = 154.0
 margin_right = 163.0
-margin_bottom = 159.0
+margin_bottom = 174.0
 rect_min_size = Vector2( 0, 20 )
 theme_type_variation = "AlternateButton"
 text = "Rename Folder"
@@ -1662,9 +1669,9 @@ align = 2
 script = ExtResource( 14 )
 
 [node name="Padding2" type="Control" parent="Panel/Subscreens/FolderSettings/Control/FolderSettingButtons"]
-margin_top = 169.0
+margin_top = 184.0
 margin_right = 163.0
-margin_bottom = 169.0
+margin_bottom = 184.0
 
 [node name="ExportFolder" type="Button" parent="Panel/Subscreens/FolderSettings/Control/FolderSettingButtons"]
 visible = false
@@ -1678,9 +1685,9 @@ align = 2
 script = ExtResource( 14 )
 
 [node name="DeleteFolder" type="Button" parent="Panel/Subscreens/FolderSettings/Control/FolderSettingButtons"]
-margin_top = 209.0
+margin_top = 194.0
 margin_right = 163.0
-margin_bottom = 229.0
+margin_bottom = 214.0
 rect_min_size = Vector2( 0, 20 )
 focus_neighbour_bottom = NodePath("../Return")
 theme_type_variation = "AlternateButtonRed"
@@ -1800,30 +1807,167 @@ size_flags_vertical = 3
 [node name="Gradient" type="TextureRect" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 26 )
+texture = SubResource( 29 )
 expand = true
 
+[node name="Bullets" type="Control" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="GreenDemon" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Bullets"]
+position = Vector2( 364, 37 )
+rotation = -0.16627
+texture = ExtResource( 57 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 26 )
+
+[node name="GreenDemon4" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Bullets"]
+position = Vector2( 423, 32 )
+rotation = -0.125843
+texture = ExtResource( 57 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 26 )
+
+[node name="GreenDemon2" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Bullets"]
+position = Vector2( 394, 68 )
+rotation = -0.0719934
+texture = ExtResource( 57 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 26 )
+
+[node name="GreenDemon3" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Bullets"]
+position = Vector2( 327, 56 )
+rotation = -0.00769942
+texture = ExtResource( 57 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 26 )
+
+[node name="Bullets2" type="Control" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="GreenDemon" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Bullets2"]
+modulate = Color( 1, 0.494118, 0.494118, 1 )
+position = Vector2( 364, 37 )
+rotation = -0.16627
+texture = ExtResource( 60 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 26 )
+
+[node name="GreenDemon4" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Bullets2"]
+modulate = Color( 1, 0.760784, 0.760784, 1 )
+position = Vector2( 423, 32 )
+rotation = -0.125843
+texture = ExtResource( 60 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 26 )
+
+[node name="GreenDemon2" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Bullets2"]
+modulate = Color( 1, 0.65098, 0.65098, 1 )
+position = Vector2( 394, 68 )
+rotation = -0.0719934
+texture = ExtResource( 60 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 26 )
+
+[node name="GreenDemon3" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Bullets2"]
+modulate = Color( 1, 0.329412, 0.329412, 1 )
+position = Vector2( 327, 56 )
+rotation = -0.00769942
+texture = ExtResource( 60 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 26 )
+
+[node name="CapBlock" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
+modulate = Color( 2, 1, 0, 1 )
+material = ExtResource( 59 )
+position = Vector2( 6, 85 )
+texture = ExtResource( 56 )
+
+[node name="CapBlockOverlay" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/CapBlock"]
+texture = ExtResource( 44 )
+
 [node name="Mario" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
-position = Vector2( 232, 40 )
-rotation = -0.202988
-texture = ExtResource( 45 )
+position = Vector2( 247, 96 )
+rotation = -1.97674
+texture = ExtResource( 43 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 48, 240, 48, 48 )
+region_rect = Rect2( 0, 432, 48, 48 )
 
 [node name="Hover" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Mario"]
 texture = ExtResource( 46 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 48, 240, 48, 48 )
+region_rect = Rect2( 0, 432, 48, 48 )
+
+[node name="Dayzee2" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
+position = Vector2( 211, 95 )
+texture = ExtResource( 61 )
+region_enabled = true
+region_rect = Rect2( 24, 0, 24, 32 )
+
+[node name="DayzeeColor" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Dayzee2"]
+modulate = Color( 0.737255, 1, 0.537255, 1 )
+texture = ExtResource( 58 )
+region_enabled = true
+region_rect = Rect2( 24, 0, 24, 32 )
+
+[node name="Dayzee4" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
+position = Vector2( 167, 95 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 61 )
+region_enabled = true
+region_rect = Rect2( 24, 0, 24, 32 )
+
+[node name="DayzeeColor" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Dayzee4"]
+modulate = Color( 1, 1, 0, 1 )
+texture = ExtResource( 58 )
+region_enabled = true
+region_rect = Rect2( 24, 0, 24, 32 )
+
+[node name="Dayzee3" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
+position = Vector2( 278, 95 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 61 )
+region_enabled = true
+region_rect = Rect2( 24, 0, 24, 32 )
+
+[node name="DayzeeColor" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Dayzee3"]
+modulate = Color( 0.537255, 0.968627, 1, 1 )
+texture = ExtResource( 58 )
+region_enabled = true
+region_rect = Rect2( 24, 0, 24, 32 )
+
+[node name="RailBlocks" type="NinePatchRect" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
+modulate = Color( 2, 1, 0, 1 )
+margin_left = 88.0
+margin_top = 111.0
+margin_right = 312.0
+margin_bottom = 143.0
+texture = ExtResource( 2 )
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Dayzee" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
+position = Vector2( 122, 95 )
+texture = ExtResource( 61 )
+region_enabled = true
+region_rect = Rect2( 48, 0, 24, 32 )
+
+[node name="DayzeeColor" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Dayzee"]
+modulate = Color( 1, 0.537255, 0.537255, 1 )
+texture = ExtResource( 58 )
+region_enabled = true
+region_rect = Rect2( 48, 0, 24, 32 )
 
 [node name="Luigi" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
-position = Vector2( 72, 30 )
+position = Vector2( 44, 17 )
 rotation = 0.0205573
-texture = ExtResource( 43 )
+texture = ExtResource( 62 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 48, 48 )
+region_rect = Rect2( 64, 0, 32, 52 )
 
 [node name="Label" type="Label" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Luigi"]
 margin_left = 18.5232
@@ -1831,121 +1975,35 @@ margin_top = -23.3857
 margin_right = 30.5232
 margin_bottom = 0.614304
 theme = ExtResource( 1 )
-text = "?"
+text = "!!!"
 
-[node name="Cloud" type="NinePatchRect" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
-margin_left = -10.2275
-margin_top = 68.6767
-margin_right = 165.773
-margin_bottom = 92.6767
-rect_rotation = 1.84457
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 64, 23 )
-patch_margin_left = 24
-patch_margin_right = 24
+[node name="Stone" type="NinePatchRect" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
+margin_left = 22.0
+margin_top = 69.0
+margin_right = 88.0
+margin_bottom = 217.0
+texture = ExtResource( 45 )
+region_rect = Rect2( 0, 0, 48, 48 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
-[node name="Cloud2" type="NinePatchRect" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
-margin_left = 263.773
-margin_top = 126.677
-margin_right = 439.773
-margin_bottom = 150.677
-rect_rotation = -3.93636
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 64, 23 )
-patch_margin_left = 24
-patch_margin_right = 24
+[node name="Stone2" type="NinePatchRect" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
+margin_left = 312.0
+margin_top = 94.0
+margin_right = 408.0
+margin_bottom = 207.0
+texture = ExtResource( 45 )
+region_rect = Rect2( 0, 0, 48, 48 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 axis_stretch_horizontal = 1
-
-[node name="Afterimage2" type="Control" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
-modulate = Color( 1, 1, 1, 0.25098 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 12.0
-margin_right = 12.0
-
-[node name="GreenDemon" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Afterimage2"]
-modulate = Color( 1, 0.494118, 0.494118, 1 )
-position = Vector2( 364, 37 )
-rotation = -0.16627
-texture = ExtResource( 44 )
-
-[node name="GreenDemon4" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Afterimage2"]
-modulate = Color( 1, 0.760784, 0.760784, 1 )
-position = Vector2( 423, 32 )
-rotation = -0.125843
-texture = ExtResource( 44 )
-
-[node name="GreenDemon2" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Afterimage2"]
-modulate = Color( 1, 0.65098, 0.65098, 1 )
-position = Vector2( 394, 68 )
-rotation = -0.0719934
-texture = ExtResource( 44 )
-
-[node name="GreenDemon3" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Afterimage2"]
-modulate = Color( 1, 0.329412, 0.329412, 1 )
-position = Vector2( 327, 56 )
-rotation = -0.00769942
-texture = ExtResource( 44 )
-
-[node name="Afterimage" type="Control" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
-modulate = Color( 1, 1, 1, 0.501961 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 6.0
-margin_right = 6.0
-
-[node name="GreenDemon" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Afterimage"]
-modulate = Color( 1, 0.494118, 0.494118, 1 )
-position = Vector2( 364, 37 )
-rotation = -0.16627
-texture = ExtResource( 44 )
-
-[node name="GreenDemon4" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Afterimage"]
-modulate = Color( 1, 0.760784, 0.760784, 1 )
-position = Vector2( 423, 32 )
-rotation = -0.125843
-texture = ExtResource( 44 )
-
-[node name="GreenDemon2" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Afterimage"]
-modulate = Color( 1, 0.65098, 0.65098, 1 )
-position = Vector2( 394, 68 )
-rotation = -0.0719934
-texture = ExtResource( 44 )
-
-[node name="GreenDemon3" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Afterimage"]
-modulate = Color( 1, 0.329412, 0.329412, 1 )
-position = Vector2( 327, 56 )
-rotation = -0.00769942
-texture = ExtResource( 44 )
-
-[node name="Demons" type="Control" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="GreenDemon" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Demons"]
-modulate = Color( 1, 0.494118, 0.494118, 1 )
-position = Vector2( 364, 37 )
-rotation = -0.16627
-texture = ExtResource( 44 )
-
-[node name="GreenDemon4" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Demons"]
-modulate = Color( 1, 0.760784, 0.760784, 1 )
-position = Vector2( 423, 32 )
-rotation = -0.125843
-texture = ExtResource( 44 )
-
-[node name="GreenDemon2" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Demons"]
-modulate = Color( 1, 0.65098, 0.65098, 1 )
-position = Vector2( 394, 68 )
-rotation = -0.0719934
-texture = ExtResource( 44 )
-
-[node name="GreenDemon3" type="Sprite" parent="Panel/Subscreens/FolderSettings/Control/Panel/MarginContainer/VBoxContainer/useless filler of space/Demons"]
-modulate = Color( 1, 0.329412, 0.329412, 1 )
-position = Vector2( 327, 56 )
-rotation = -0.00769942
-texture = ExtResource( 44 )
+axis_stretch_vertical = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Subscreens/FolderSettings"]
 anims/RESET = SubResource( 23 )
